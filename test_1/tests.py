@@ -5,40 +5,38 @@ from aliasdict import AliasDict
 
 
 class TestAliasdict(unittest.TestCase):
+	def setUp(self):
+		d = {'foo': 1, 'bar': 'baz'}
+                self.ad = AliasDict(d)
 	def test_ad(self):
-		d = {'foo': 1, 'bar': 'baz'}
-		ad = AliasDict(d)
-		self.assertEqual(ad['foo'], 1)
-		self.assertEqual('foo' in ad, True)
+		self.assertEqual(self.ad['foo'], 1)
+		self.assertIn('foo',self.ad)
 	def test_set_alias(self):
-		d = {'foo': 1, 'bar': 'baz'}
-		ad = AliasDict(d)
-		ad.set_alias('foo', ('foo_1', 'foo_2'))
-		self.assertEqual('foo_1' in ad, True)
-		self.assertEqual(ad['foo_2'], 1)
-		ad['foo_1'] = 33
-		self.assertEqual(ad['foo'], 33)
+		self.ad.set_alias('foo', ('foo_1', 'foo_2'))
+		self.assertIn('foo_1', self.ad)
+		self.assertEqual(self.ad['foo_2'], 1)
+		self.ad['foo_1'] = 33
+		self.assertEqual(self.ad['foo'], 33)
 	def test_get_main_key(self):
-		d = {'foo': 1, 'bar': 'baz'}
-                ad = AliasDict(d)
-                res = ad.set_alias('foo', ('foo_1', 'foo_2'))
-		self.assertEqual(ad.get_main_key('foo_1'), 'foo')
-#		self.assertRaises()
+                self.ad.set_alias('foo', ('foo_1', 'foo_2'))
+		self.assertEqual(self.ad.get_main_key('foo_1'), 'foo')
 	def test_update(self):
-		d = {'foo': 1, 'bar': 'baz'}
-                ad = AliasDict(d)
-		d = {'foo': 2, 'bar': 'baz'}
-		ad.update(d)
-		self.assertEqual(ad['foo'], 2)
-		ad.set_alias('foo', ('foo_1', 'foo_2'))
+		d = {'foo': 2 }
+		self.ad.update(d)
+		self.assertEqual(self.ad['foo'], 2)
+		self.ad.set_alias('foo', ('foo_1', 'foo_2'))
 		d = {'foo_2': 'baz'}
-		ad.update(d)
-		self.assertEqual(ad['foo_1'], 'baz')
-		
-	def test_doc(self):
-		print("DOC_TEST: ")
-		import doctest, aliasdict
-		doctest.testmod(aliasdict)
+		self.ad.update(d)
+		self.assertEqual(self.ad['foo_1'], 'baz')
+	def test_exceptions(self):
+		d = {'foo': 1, 'bar': 'baz'}
+		self.ad = AliasDict(d)
+		d = str(d)
+		self.assertRaises(TypeError, self.ad.update, d)
+#	def test_doc(self):
+#		print("DOC_TEST: ")
+#		import doctest, aliasdict
+#		doctest.testmod(aliasdict)
 
 #doc_test()
 
