@@ -12,7 +12,7 @@ Command:
 ```
 $ ./tests.py 
 ```
-for extendet output use "-v" 
+for extended output use "-v" 
 ```
 $ ./tests.py -v 
 ```
