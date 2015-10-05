@@ -1,5 +1,4 @@
-#python -m doctest aliasdict.py
-#python -m unittest aliasdict
+#!/usr/bin/env python2.7
 import unittest
 from aliasdict import AliasDict
 
@@ -33,15 +32,11 @@ class TestAliasdict(unittest.TestCase):
 		self.ad = AliasDict(d)
 		d = str(d)
 		self.assertRaises(TypeError, self.ad.update, d)
-#	def test_doc(self):
-#		print("DOC_TEST: ")
-#		import doctest, aliasdict
-#		doctest.testmod(aliasdict)
-
-#doc_test()
+	def test_doc(self):
+		print("DOC_TEST: ")
+		import doctest, aliasdict
+		doctest.testmod(aliasdict)
 
 if __name__ == "__main__":
 	unittest.main()
-	#doc_test()
-	#import doctest
-	#doctest.testmod()
+	doc_test()
