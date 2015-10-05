@@ -13,4 +13,4 @@ Command:
 $ ./tests.py
 ```
 
-Test are covered doctest and five testcases, but i'm not sure regarding "100% coverage".
+Test has doctest and five custom testcases, but i'm not sure regarding "100% coverage".
