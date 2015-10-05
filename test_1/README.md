@@ -6,4 +6,9 @@ Free to choose test framework.
 
 How to use tests.py:
 
+tests.py have to be runned from the same catalog where is aliasdict.py file.
 
+Command
+```
+$ python tests.py
+```
