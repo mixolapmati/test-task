@@ -10,7 +10,11 @@ tests.py have to be runned from the same catalog where is aliasdict.py file.
 
 Command:
 ```
-$ ./tests.py
+$ ./tests.py 
+```
+for extendet output use "-v" 
+```
+$ ./tests.py -v 
 ```
 
 Test has doctest and five custom testcases, but i'm not sure regarding "100% coverage".
